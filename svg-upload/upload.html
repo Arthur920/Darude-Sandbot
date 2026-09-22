@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>SVG Upload</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            max-width: 30rem;
+            margin: 4rem auto;
+            padding: 0 1rem;
+            color: #1e1e1e;
+            background: #fafafa;
+        }
+        h1 { font-size: 1.25rem; margin-bottom: 1.5rem; }
+        .row { display: flex; gap: 0.75rem; align-items: center; }
+        input[type="file"]::file-selector-button {
+            padding: 0.4rem 0.9rem;
+            border: 1px solid #d0d3d8;
+            border-radius: 6px;
+            background: #fff;
+            cursor: pointer;
+        }
+        button {
+            padding: 0.45rem 1.1rem;
+            border: none;
+            border-radius: 6px;
+            background: #4f8cff;
+            color: #fff;
+            cursor: pointer;
+        }
+        button:hover { background: #3d77e0; }
+        button:disabled { background: #9bbcf0; cursor: default; }
+        #result { margin-top: 1rem; color: #2e7d32; }
+    </style>
+</head>
+<body>
+    <h1>SVG Upload</h1>
+    <div class="row">
+        <input type="file" id="svg" accept=".svg,image/svg+xml" />
+        <button id="submit-btn">Upload</button>
+    </div>
+    <p id="result"></p>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cpee.org/out/frames/js/frames.js"></script>
+    <script>
+
+      const inp = document.getElementById('svg');
+      const btn = document.getElementById('submit-btn');
+       const resultEl = document.getElementById('result');
+
+      btn.addEventListener('click', async () => {
+          const file = inp.files[0];
+          if (!file) {
+              resultEl.textContent = 'Pick an SVG first.';
+              return;
+          }
+          btn.disabled = true;
+
+          const svg = await file.text();
+          cpee_callback(cpee.callback, JSON.stringify({ svg }));
+
+          resultEl.textContent = 'Uploaded ' + file.name;
+      });
+    </script>
+</body>
+</html>
