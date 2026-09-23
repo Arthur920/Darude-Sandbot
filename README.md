@@ -2,8 +2,8 @@
 
 This Project allows an UR5 robot rake any SVG into sand by converting SVG geometry data into URScript move commands.  
 
-https://github.com/user-attachments/assets/84fa9d08-7345-472c-8410-83129dd225ee
 
+https://github.com/user-attachments/assets/eedf9051-60e2-46a5-a072-17bf98ae2dd9
 
 ## Flow
 
@@ -42,3 +42,7 @@ cd <service>
 pip install -r requirements.txt
 uvicorn app.main:app --reload --host :: --port <port>
 ```
+
+https://github.com/user-attachments/assets/84fa9d08-7345-472c-8410-83129dd225ee
+
+
